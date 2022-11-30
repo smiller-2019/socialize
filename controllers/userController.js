@@ -20,7 +20,8 @@ module.exports = {
       )
       // .then((thoughts) => res.json(thoughts))
       // .then((friends) => res.json(friends))
-      .catch((err) => res.status(500).json(err));
+      // .catch((err) => res.status(500).json(err));
+      .catch((err) => console.log(err));
   },
   // create a new user
   createUser(req, res) {
