@@ -1,4 +1,4 @@
-const { Thought, Reaction } = require("../models");
+const { User, Thought, Reaction } = require("../models");
 
 module.exports = {
   // Get all thoughts
@@ -19,8 +19,7 @@ module.exports = {
           ? res.status(404).json({ message: "No thought with that ID" })
           : res.json(thought)
       )
-      .then((reactions) => res.json(reactions))
-      .then((reactions) => res.json(reactions))
+      // .then((reactions) => res.json(reactions))
       .catch((err) => res.status(500).json(err));
   },
   // create a new thought
