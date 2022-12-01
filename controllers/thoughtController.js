@@ -33,7 +33,7 @@ module.exports = {
     Thought.create(req.body)
       .then((thought) => {
         return User.findOneAndUpdate(
-          { _id: req.body.userId },
+          { _id: req.params.userId },
           { $addToSet: { thoughts: thought._id } },
           { runValidators: true, new: true }
         );
