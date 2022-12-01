@@ -5,7 +5,10 @@ module.exports = {
   getThoughts(req, res) {
     Thought.find()
       .then((thoughts) => res.json(thoughts))
-      .catch((err) => res.status(500).json(err));
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
   },
   // Get a single thoughts
   getSingleThought(req, res) {
@@ -41,7 +44,7 @@ module.exports = {
   },
   // Update a thought
   updateThought(req, res) {
-    User.findOneAndUpdate(
+    Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
       { $set: req.body },
       { runValidators: true, new: true }
@@ -65,7 +68,7 @@ module.exports = {
       { runValidators: true, new: true }
     )
       .then((thought) =>
-        !user
+        !thought
           ? res
               .status(404)
               .json({ message: "No reaction with this thought id!" })
@@ -81,7 +84,7 @@ module.exports = {
       { runValidators: true, new: true }
     )
       .then((thought) =>
-        !user
+        !thought
           ? res
               .status(404)
               .json({ message: "No reaction with this thought id!" })

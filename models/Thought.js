@@ -22,7 +22,7 @@ const thoughtSchema = new Schema(
     reactions: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Reaction",
+        ref: "reactionSchema",
       },
     ],
   },
@@ -34,13 +34,10 @@ const thoughtSchema = new Schema(
   }
 );
 
-// Create a virtual property `getTags` that gets the amount of tags associated with an application
-thoughtSchema
-  .virtual("reactionCount")
-  // Getter
-  .get(function () {
-    return this.reactions.length;
-  });
+// Create a virtual property `reactionCount` that gets the amount of reactions associated with a thought
+thoughtSchema.virtual("reactionCount").get(function () {
+  return this.reactions.length;
+});
 
 // Initialize our Application model
 const Thought = model("thought", thoughtSchema);
