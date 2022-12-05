@@ -10,7 +10,7 @@ module.exports = {
         res.status(500).json(err);
       });
   },
-  // Get a single thoughts
+  // Get a single thought
   getSingleThought(req, res) {
     Thought.findOne({ _id: req.params.thoughtId })
       .select("-__v")
@@ -19,15 +19,8 @@ module.exports = {
           ? res.status(404).json({ message: "No thought with that ID" })
           : res.json(thought)
       )
-      // .then((reactions) => res.json(reactions))
-      .catch((err) => res.status(500).json(err));
+      .catch((err) => console.log(err));
   },
-  // create a new thought
-  // createThought(req, res) {
-  //   Thought.create(req.body)
-  //     .then((thought) => res.json(thought))
-  //     .catch((err) => res.status(500).json(err));
-  // },
 
   createThought(req, res) {
     Thought.create(req.body)
